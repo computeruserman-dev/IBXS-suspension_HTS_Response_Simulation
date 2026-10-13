@@ -127,56 +127,20 @@ After editing a run's `plot_time_histories.py`, explicitly regenerate existing f
 
 ## 4. Repository Architecture
 
-The tree below lists the current key files and collapses repeated experiment directories into `<run_id>`. This placeholder is not a literal directory name.
+The project separates simulation code, shared utilities, configurations, numerical results, figures, and derivations into the following directories:
 
 ```text
-main/                                            # Project root for models, configurations, data, figures, and derivations.
-|-- AGENTS.md                                    # Defines domain integrity, verification gates, storage, and provenance rules.
-|-- README.md                                    # Documents principles, dependencies, entry points, and key parameters.
-|-- IBXS Suspension/                             # Stores IBXS-specific MATLAB simulation code and documentation.
-|   |-- simulate_ibxs_li2021.m                   # Integrates the IBXS model with transverse damping and exports responses.
-|   `-- README.md                               # Documents the IBXS interface, defaults, and output contract.
-|-- TIXS Suspension/                             # Stores TIXS-specific MATLAB simulation code and documentation.
-|   |-- simulate_tixs_li2021.m                   # Integrates TIXS, its linear baseline, and the refined-step model.
-|   `-- README.md                               # Documents the TIXS interface, baseline, and convergence checks.
-|-- common/                                      # Stores utilities and a plotting template shared by both suspensions.
-|   |-- load_suspension_config.m                 # Loads and validates the model-specific JSON configuration.
-|   |-- make_li2021_track.m                      # Synthesizes fixed-seed front/rear track displacement and velocity.
-|   |-- validate_solution.m                     # Checks the time grid, eight-state dimensions, and finite values.
-|   |-- export_suspension_run.m                 # Creates run directories and exports data, settings, and provenance.
-|   |-- plot_time_histories.py.in                # Provides the Matplotlib template copied into each figure directory.
-|   |-- plot_requirements.txt                   # Pins NumPy and Matplotlib versions.
-|   `-- README.md                               # Documents shared callers and plotting-environment setup.
-|-- config/                                      # Stores reproducible physical, track, and solver settings.
-|   |-- ibxs_li2021_parameters.json              # Defines IBXS benchmark parameters and default run conditions.
-|   |-- tixs_li2021_parameters.json              # Defines TIXS benchmark parameters and refinement settings.
-|   |-- german_railway_spectrum_configuration.md  # Explains track-spectrum formulas, synthesis, and historical audits.
-|   |-- suspension_dynamics_configuration.md     # Explains vehicle dynamics, parameters, and current interfaces.
-|   `-- README.md                               # Documents configuration precedence, output contracts, and references.
-|-- data/                                        # Stores numerical results by suspension type and run identifier.
-|   |-- IBXS/<run_id>/                           # Stores data and provenance for an IBXS run.
-|   `-- TIXS/<run_id>/                           # Stores TIXS run data and its linear baseline.
-|       |-- time_histories.csv                   # Stores output-grid states, accelerations, and track inputs.
-|       |-- track_realization.csv                # Stores the full front/rear track displacement and velocity record.
-|       |-- simulation_results.mat               # Stores model states, parameters, track records, and metrics.
-|       |-- effective_config.json                # Stores effective settings after positional argument overrides.
-|       |-- metadata.json                        # Records commands, runtime, metrics, units, and source hashes.
-|       `-- README.md                            # Documents run-specific fields and reproduction instructions.
-|-- pics/                                        # Stores plotting scripts and figures under matching run identifiers.
-|   |-- IBXS/<run_id>/                           # Stores IBXS acceleration figures and plotting provenance.
-|   `-- TIXS/<run_id>/                           # Stores TIXS acceleration figures and linear-baseline comparisons.
-|       |-- plot_time_histories.py               # Reads the paired CSV and renders figures independently.
-|       |-- body_acceleration.png / .pdf         # Shows the suspension's car-body vertical acceleration history.
-|       |-- linear_tixs_acceleration_comparison.png / .pdf # Compares TIXS and linear responses; TIXS only.
-|       |-- plot_metadata.json                  # Records the plotting environment, source hashes, and generation time.
-|       `-- README.md                            # Documents source CSV files, plotting commands, and figure formats.
-`-- docs/                                        # Stores model derivations and existing verification records.
-    |-- IBXS_Lagrange_Derivation.tex / .pdf       # Contains the IBXS Lagrange derivation source and rendered document.
-    |-- TIXS_Lagrange_Derivation.tex / .pdf       # Contains the TIXS Lagrange derivation source and rendered document.
-    `-- output_refactor_verification.md           # Records prior Smoke/Full Gates, environments, and numerical checks.
+main/                    # Project root containing the suspension simulation and comparison workflow.
+|-- IBXS Suspension/     # MATLAB simulation code and model-specific documentation for IBXS.
+|-- TIXS Suspension/     # MATLAB simulation code and documentation for TIXS and its linear baseline.
+|-- common/              # Shared configuration, track synthesis, validation, export, and plotting utilities.
+|-- config/              # Physical parameters, track settings, solver settings, and configuration documentation.
+|-- data/                # Numerical simulation results and run provenance, organized by suspension and run ID.
+|-- pics/                # Figures and their Python plotting scripts, organized by suspension and run ID.
+`-- docs/                # Mathematical derivations, rendered reports, and verification records.
 ```
 
-IBXS data and figure directories use the same general layout but omit TIXS-specific linear-comparison figures and baseline states. Both suspensions currently have paired `smoke_output_refactor_20261013` and `run_20261013_074447_802_tp26102901_481a_40c7_8ad2_34801127611d` results, corresponding to short verification and full benchmark runs. Historical audits in the track and dynamics configuration notes are explicitly labeled as historical; current execution interfaces are defined by the MATLAB source, JSON configurations, and model READMEs.
+Corresponding numerical and figure outputs use matching run identifiers under `data/<Suspension>/<run_id>/` and `pics/<Suspension>/<run_id>/`. This separation allows figures to be regenerated from saved numerical data without rerunning the simulation.
 
 ## 5. Configuration
 
@@ -257,12 +221,3 @@ simulate_tixs_li2021(alphaDeg,writeOutputs,runId,stopTime)
 | `stopTime` | Overrides the response duration, including short Smoke Gate runs | JSON `solver.duration_s` | Positive number / $\mathrm{s}$ |
 
 Result fields retain historical names such as `rms_0_10_s_m_s2` and `rms10_m_s2`. The actual evaluation interval is determined by `duration_s`; short runs must not be treated as full benchmark results. Run-specific configurations, units, commands, and source hashes provide numerical provenance. Reuse existing data for figure-only or documentation-only changes. Changes to models, inputs, or solver settings that affect numerical results require a new run identifier and corresponding README/configuration updates.
-
-### Verification & Execution Summary
-
-- [x] **Domain Integrity**: This update translates the root README only; physical parameters, equations, control logic, and solver settings are unchanged.
-- [x] **Verification Gate**: Documentation-only work followed the Plot-Only Bypass, status Pass. No ODE solver was rerun; Smoke Gate and Full Gate are N/A for this update. Existing results are documented in `docs/output_refactor_verification.md`.
-- [x] **Finite Output Check**: Read-only checks of the existing 8 numerical CSV files cover 142076 rows, with all fields finite. Full track CSV files are byte-identical for both matching IBXS/TIXS run pairs. No new data were exported; MAT internal arrays were not inspected.
-- [x] **Directory & Decoupling**: Simulation code remains in suspension directories, data in `data/<Suspension>/<run_id>/`, and figures with plotting `.py` files in `pics/<Suspension>/<run_id>/`. Only the root README was edited.
-- [x] **Provenance & Atomic Docs**: `README.md` was updated in this turn. Configuration defaults agree with the existing JSON files; `config/` was unchanged because no model, behavior, or configuration changed.
-- [x] **Quantitative Claims**: Sample counts, delay, and parameter values come from source code, JSON settings, or existing CSV checks. No new vibration-reduction, speedup, or general superiority claim is made.
