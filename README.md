@@ -17,8 +17,8 @@ The primary suspension uses linear stiffness and damping, while two secondary br
 
 $$
 \boldsymbol M(\boldsymbol q)
-=\boldsymbol M_0+\boldsymbol B\operatorname{diag}(\mu_f,\mu_r)\boldsymbol B^{\mathsf T},\qquad
-\boldsymbol M_0=\operatorname{diag}(m_c,I_c,m_1,m_1).
+=\boldsymbol M_0+\boldsymbol B\mathrm{diag}(\mu_f,\mu_r)\boldsymbol B^{\mathsf T},\qquad
+\boldsymbol M_0=\mathrm{diag}(m_c,I_c,m_1,m_1).
 $$
 
 Here, $\boldsymbol B$ maps vehicle coordinates to the relative displacements of the two secondary branches, and $\mu_f,\mu_r$ are geometry-dependent equivalent inertances. Spring preload accounts for half the car-body weight supported by each branch. The model retains the full X-structure rod geometry and uses a small-pitch approximation for the car-body attachment points.
