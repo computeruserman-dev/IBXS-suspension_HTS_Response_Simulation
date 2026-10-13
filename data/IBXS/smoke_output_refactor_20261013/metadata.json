@@ -1,0 +1,306 @@
+{
+  "model": "IBXS",
+  "run_id": "smoke_output_refactor_20261013",
+  "generated_utc": "2026-10-13T07:42:00.878Z",
+  "matlab_version": "25.2.0.3177638 (R2025b) Update 5",
+  "platform": "MACA64",
+  "solver_status": "completed",
+  "source_function": "IBXS Suspension/simulate_ibxs_li2021.m",
+  "configuration_source": "config/ibxs_li2021_parameters.json",
+  "source_revision": "not recorded; see source_sha256",
+  "effective_config": {
+    "schema_version": 1,
+    "model": "IBXS",
+    "vehicle": {
+      "mc": 8500,
+      "Ic": 192500,
+      "m1": 4032,
+      "d": 3.8,
+      "k1": 3.5424E+6,
+      "c1": 2419.2,
+      "g": 9.81
+    },
+    "secondary": {
+      "k": 730000,
+      "c": 50000,
+      "b": 500,
+      "l": 1,
+      "alpha_deg": 30,
+      "damper_orientation": "horizontal"
+    },
+    "track": {
+      "speed_km_h": 500,
+      "Av": 4.032E-7,
+      "OmegaR": 0.0206,
+      "OmegaC": 0.8246,
+      "seed": 127,
+      "rng_algorithm": "twister",
+      "record_seconds": 20,
+      "sample_count": 32768,
+      "f_min_hz": 1,
+      "f_max_hz": 80,
+      "amplitude_scale": 0.62
+    },
+    "solver": {
+      "method": "ode45",
+      "rel_tol": 1E-8,
+      "abs_tol": 1E-10,
+      "max_step_s": 0.002,
+      "output_step_s": 0.002,
+      "duration_s": 1,
+      "initial_state": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "refinement": {
+      "enabled": false,
+      "rel_tol": 1E-9,
+      "abs_tol": 1E-11,
+      "max_step_s": 0.001,
+      "rms_difference_limit_percent": 0.5
+    },
+    "reference_track_csv": "",
+    "units": {
+      "vehicle": {
+        "mc": "kg",
+        "Ic": "kg m^2",
+        "m1": "kg",
+        "d": "m",
+        "k1": "N/m",
+        "c1": "N s/m",
+        "g": "m/s^2"
+      },
+      "secondary": {
+        "k": "N/m transverse",
+        "c": "N s/m horizontal",
+        "b": "kg transverse inertance",
+        "l": "m",
+        "alpha_deg": "degree"
+      },
+      "track": {
+        "speed_km_h": "km/h",
+        "Av": "m with radians dimensionless; inferred from formula",
+        "OmegaR": "rad/m",
+        "OmegaC": "rad/m",
+        "record_seconds": "s",
+        "f_min_hz": "Hz",
+        "f_max_hz": "Hz",
+        "amplitude_scale": "dimensionless"
+      },
+      "state_order": [
+        "body_heave_m",
+        "body_pitch_rad",
+        "front_bogie_heave_m",
+        "rear_bogie_heave_m",
+        "body_heave_velocity_m_s",
+        "body_pitch_velocity_rad_s",
+        "front_bogie_velocity_m_s",
+        "rear_bogie_velocity_m_s"
+      ]
+    },
+    "configuration_path": "config/ibxs_li2021_parameters.json"
+  },
+  "metrics": {
+    "rms_0_10_s_m_s2": 0.23407195434335926,
+    "rod_length_m": 1,
+    "inerter_inertance_per_branch_kg": 500,
+    "horizontal_spring_per_branch_N_m": 730000,
+    "horizontal_damper_per_branch_Ns_m": 50000,
+    "initial_angle_deg": 30,
+    "spring_natural_length_m": 1.6331281660694728,
+    "static_load_per_branch_N": 41692.5,
+    "tangent_stiffness_per_branch_N_m": 187743.33333333331,
+    "tangent_damping_per_branch_Ns_m": 16666.666666666664,
+    "tangent_inertance_per_branch_kg": 166.66666666666666,
+    "minimum_height_m": 0.9938968525069618,
+    "maximum_height_m": 1.00868402356194,
+    "minimum_hinge_span_m": 1.7270079735226747,
+    "reference_track_max_abs_difference_m": [],
+    "solver_max_step_s": 0.002,
+    "track_seed": 127,
+    "track_f_min_hz": 1,
+    "track_f_max_hz": 80,
+    "track_spectrum_scale": 0.62,
+    "track_rear_delay_s": 0.05472,
+    "reference_track_status": "not_configured",
+    "duration_s": 1,
+    "runtime_seconds": 1.76614,
+    "effective_config": {
+      "schema_version": 1,
+      "model": "IBXS",
+      "vehicle": {
+        "mc": 8500,
+        "Ic": 192500,
+        "m1": 4032,
+        "d": 3.8,
+        "k1": 3.5424E+6,
+        "c1": 2419.2,
+        "g": 9.81
+      },
+      "secondary": {
+        "k": 730000,
+        "c": 50000,
+        "b": 500,
+        "l": 1,
+        "alpha_deg": 30,
+        "damper_orientation": "horizontal"
+      },
+      "track": {
+        "speed_km_h": 500,
+        "Av": 4.032E-7,
+        "OmegaR": 0.0206,
+        "OmegaC": 0.8246,
+        "seed": 127,
+        "rng_algorithm": "twister",
+        "record_seconds": 20,
+        "sample_count": 32768,
+        "f_min_hz": 1,
+        "f_max_hz": 80,
+        "amplitude_scale": 0.62
+      },
+      "solver": {
+        "method": "ode45",
+        "rel_tol": 1E-8,
+        "abs_tol": 1E-10,
+        "max_step_s": 0.002,
+        "output_step_s": 0.002,
+        "duration_s": 1,
+        "initial_state": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "refinement": {
+        "enabled": false,
+        "rel_tol": 1E-9,
+        "abs_tol": 1E-11,
+        "max_step_s": 0.001,
+        "rms_difference_limit_percent": 0.5
+      },
+      "reference_track_csv": "",
+      "units": {
+        "vehicle": {
+          "mc": "kg",
+          "Ic": "kg m^2",
+          "m1": "kg",
+          "d": "m",
+          "k1": "N/m",
+          "c1": "N s/m",
+          "g": "m/s^2"
+        },
+        "secondary": {
+          "k": "N/m transverse",
+          "c": "N s/m horizontal",
+          "b": "kg transverse inertance",
+          "l": "m",
+          "alpha_deg": "degree"
+        },
+        "track": {
+          "speed_km_h": "km/h",
+          "Av": "m with radians dimensionless; inferred from formula",
+          "OmegaR": "rad/m",
+          "OmegaC": "rad/m",
+          "record_seconds": "s",
+          "f_min_hz": "Hz",
+          "f_max_hz": "Hz",
+          "amplitude_scale": "dimensionless"
+        },
+        "state_order": [
+          "body_heave_m",
+          "body_pitch_rad",
+          "front_bogie_heave_m",
+          "rear_bogie_heave_m",
+          "body_heave_velocity_m_s",
+          "body_pitch_velocity_rad_s",
+          "front_bogie_velocity_m_s",
+          "rear_bogie_velocity_m_s"
+        ]
+      },
+      "configuration_path": "config/ibxs_li2021_parameters.json"
+    },
+    "run_id": "smoke_output_refactor_20261013",
+    "csv_path": "data/IBXS/smoke_output_refactor_20261013/time_histories.csv",
+    "mat_path": "data/IBXS/smoke_output_refactor_20261013/simulation_results.mat",
+    "figure_path": "pics/IBXS/smoke_output_refactor_20261013/body_acceleration.png"
+  },
+  "figure_directory": "pics/IBXS/smoke_output_refactor_20261013",
+  "data_directory": "data/IBXS/smoke_output_refactor_20261013",
+  "generation_command": "simulate_ibxs_li2021(0.002,true,30,1,'smoke_output_refactor_20261013',1)",
+  "jvm_enabled": false,
+  "plot_command": "python3 pics/IBXS/smoke_output_refactor_20261013/plot_time_histories.py",
+  "source_sha256": [
+    {
+      "path": "IBXS Suspension/simulate_ibxs_li2021.m",
+      "sha256": "dce12157d1bc2ff7af6b6ca9807dcf089b2000b22b8234e3cca38f52f8bd3297"
+    },
+    {
+      "path": "config/ibxs_li2021_parameters.json",
+      "sha256": "4e42957f794d103d40582d4b2b7a6385b91486b25030b0c6d6e4bf6f90093b2c"
+    },
+    {
+      "path": "common/plot_time_histories.py.in",
+      "sha256": "31d45c000f16c57efb751ad0edd8dd72805cffd80e62e5ede40ea59198ccae39"
+    },
+    {
+      "path": "common/export_suspension_run.m",
+      "sha256": "dd39318940e0596bb2095e5fd4b0c1e9119c068d5fe7489be924048f10a66657"
+    },
+    {
+      "path": "common/load_suspension_config.m",
+      "sha256": "7908b8af6fbe0ce5d67f366669b3b24c79f275902567ac9aa2662b04011d6bed"
+    },
+    {
+      "path": "common/make_li2021_track.m",
+      "sha256": "e33f8e26b59fd35b28018418e4f3e6ac93295c9f3f2a5e36202ba376bc1ba581"
+    },
+    {
+      "path": "common/validate_solution.m",
+      "sha256": "91e1ce3ee8c96302aeffcb170cc994086dfb0ada3be6cb47fd534ea270a347c3"
+    }
+  ],
+  "csv_columns": [
+    "time_s",
+    "body_vertical_acceleration_m_s2",
+    "body_heave_m",
+    "body_pitch_rad",
+    "front_bogie_heave_m",
+    "rear_bogie_heave_m",
+    "front_track_m",
+    "rear_track_m",
+    "front_track_velocity_m_s",
+    "rear_track_velocity_m_s",
+    "body_heave_velocity_m_s",
+    "body_pitch_velocity_rad_s",
+    "front_bogie_velocity_m_s",
+    "rear_bogie_velocity_m_s"
+  ],
+  "csv_units": [
+    "s",
+    "m/s^2",
+    "m",
+    "rad",
+    "m",
+    "m",
+    "m",
+    "m",
+    "m/s",
+    "m/s",
+    "m/s",
+    "rad/s",
+    "m/s",
+    "m/s"
+  ]
+}

@@ -1,0 +1,216 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\numberwithin{equation}{section}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\newcommand{\bq}{\bm q}
+\newcommand{\bB}{\bm B}
+\newcommand{\bM}{\bm M}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\T}{\mathsf T}
+\title{Lagrangian Derivation of an HTS Maglev Vehicle with Inerter-Based X-Structure Secondary Suspensions}
+\author{}
+\date{September 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The four-degree-of-freedom linear suspension equations of Li et al.~\cite{Li2021} serve as the reference vehicle model. Each secondary branch in the supplied schematic is replaced by an ideal X-structure whose lateral hinges are joined by a horizontal spring, damper, and inerter in parallel. Exact rigid-rod geometry, static spring preload, the two-terminal inerter energy, and Rayleigh dissipation yield four nonlinear equations, an explicit state-dependent mass matrix, and the small-amplitude limit. Here ``exact'' applies to the ideal X geometry; the car-body attachment kinematics and primary levitation remain linearized.
+\end{abstract}
+
+\section{Connection with the linear vehicle model and sign convention}
+Li et al.~\cite{Li2021}, Eqs.~(1)--(4), describe car-body heave and pitch and front and rear bogie--Dewar heave. In their notation, $m_2,I_2$ are the car-body mass and pitch inertia, $m_{1a},m_{1b}$ are the bogie masses, $F_{2i}$ is the secondary elastic-plus-viscous force, $F_{1i}$ is the dynamic primary force, and $f_{ci}$ is the optional actuator force. For the supplied figure, identify $m_c=m_2$, $I_c=I_2$, $d=L_a=L_b$, $x_c=x_2$, and $a,b$ with the left and right assemblies.
+
+All vertical coordinates $x_c,x_{1a},x_{1b},x_a,x_b$ are positive downward. The illustrated $\varphi_c$ is clockwise positive, so a positive angle raises the left car-body attachment and lowers the right one. The moment signs of Li et al.'s Eq.~(2) correspond to the opposite pitch convention: $\theta_2=-\varphi_c$. Multiplying that reference pitch equation by $-1$ gives the left and right secondary moment coefficients $-d$ and $+d$, respectively. This mapping fixes every pitch sign below.
+
+The figure is passive, hence $p_a=p_b=0$. Optional $p_i=f_{ci}$ are retained to show the relation to the reference equations. Define $p_i>0$ as a downward force on the car body and an equal upward force on bogie $i$. The reference linear secondary branch, after static-force subtraction, would have $F_{2i}^{\rm lin}=K_{2i}r_i+C_{2i}\dot r_i$.
+
+Assume a rigid car body, small pitch for the attachment-point positions, massless inextensible rods, ideal hinges, and a horizontal spring, damper, and inerter connected between the same two lateral hinges of each X-unit. Bogie pitch, car-body roll and lateral motion, rod mass, joint friction, and nonlinear HTS hysteresis are omitted. The primary levitation is the linearized $k_{1i},c_{1i}$ model of Li et al.
+
+\section{Generalized coordinates and complete IBXS kinematics}
+Set
+\begin{equation}
+\bq=(x_c,\varphi_c,x_{1a},x_{1b})^\T,
+\quad \bB_a=(1,-d,-1,0)^\T,
+\quad \bB_b=(1,d,0,-1)^\T.\label{eq:B}
+\end{equation}
+The perturbation compression of each unit is the downward displacement of its upper terminal relative to its lower terminal:
+\begin{align}
+r_a&=x_c-d\varphi_c-x_{1a}=\bB_a^\T\bq,\label{eq:ra}\\
+r_b&=x_c+d\varphi_c-x_{1b}=\bB_b^\T\bq.\label{eq:rb}
+\end{align}
+Thus $\dot r_i=\bB_i^\T\dot{\bq}$ and $\ddot r_i=\bB_i^\T\ddot{\bq}$. The $r_i$ are perturbations, not absolute X-unit heights. Inserting $r_i$ directly into an inverse sine would falsely set the equilibrium rod angle to zero.
+
+Let each of the four rods in branch $i$ have length $l_i$, and let its static angle to the horizontal be $0<\alpha_i<\pi/2$. The static height, instantaneous height, half-height, half-width, and lateral-hinge span are
+\begin{equation}
+H_{0i}=2l_i\sin\alpha_i,\quad H_i=H_{0i}-r_i,\quad
+s_i=H_i/2,\quad R_i=\sqrt{l_i^2-s_i^2},\quad
+w_i=2R_i=\sqrt{4l_i^2-H_i^2}.\label{eq:geom}
+\end{equation}
+The rigid-rod constraint is $R_i^2+s_i^2=l_i^2$. The non-inverted physical branch requires $0<H_i<2l_i$, or $H_{0i}-2l_i<r_i<H_{0i}$. The instantaneous angle obeys $\sin\theta_i=H_i/(2l_i)$ and $\cos\theta_i=w_i/(2l_i)$. Direct differentiation gives the exact Jacobian and acceleration transformation:
+\begin{align}
+J_i(r_i)&=\frac{\dd w_i}{\dd r_i}=\frac{H_i}{w_i}=\frac{s_i}{R_i}=\tan\theta_i,\label{eq:J}\\
+J_i'(r_i)&=-\frac{4l_i^2}{w_i^3}=-\frac{l_i^2}{2R_i^3},\label{eq:Jp}\\
+\dot w_i&=J_i\dot r_i,\qquad
+\ddot w_i=J_i\ddot r_i+J_i'\dot r_i^2.\label{eq:wdd}
+\end{align}
+Compression reduces height and increases span, hence $J_i>0$. If an extension coordinate $h_i=-r_i$ is used instead, the same geometry gives $\dot w_i=-\tan\theta_i\dot h_i$. These sign conventions must not be mixed.
+
+\section{Static load and spring preload}
+For a horizontal spring of stiffness $k_{Xi}$ and natural length $w_{ni}$,
+\begin{equation}
+V_{Xi}(r_i)=\frac12k_{Xi}(w_i-w_{ni})^2,
+\qquad S_i(r_i)=V_{Xi}'(r_i)=k_{Xi}(w_i-w_{ni})J_i.\label{eq:VX}
+\end{equation}
+Let $w_{0i}=2l_i\cos\alpha_i$ and $P_i=S_i(0)$. With no static actuator bias or applied pitch moment, car-body force and moment balance imply
+\begin{equation}
+P_a+P_b=m_cg,\qquad -dP_a+dP_b=0,
+\qquad P_a=P_b=\frac{m_cg}{2}.\label{eq:static}
+\end{equation}
+The spring therefore needs the natural length
+\begin{equation}
+w_{ni}=w_{0i}-\frac{P_i}{k_{Xi}\tan\alpha_i}.\label{eq:wn}
+\end{equation}
+If $w_{ni}=w_{0i}$ and there is no separate static-load path, the spring supplies zero vertical force at $r_i=0$ and cannot support the car body. Natural length, allowable stroke, and strength must be feasible. If $L_{0i}$ denotes the static upward primary levitation force on bogie $i$, its static balance also requires
+\begin{equation}
+L_{0i}=m_{1i}g+P_i.\label{eq:lev0}
+\end{equation}
+
+\section{Kinetic and potential energy, dissipation, and Lagrange's equation}
+The horizontal inerter is a two-terminal element, with kinetic energy and vertical equivalent inertance
+\begin{equation}
+T_{bi}=\frac12b_i\dot w_i^2=\frac12\mu_i(r_i)\dot r_i^2,
+\quad \mu_i=b_iJ_i^2=b_i\frac{H_i^2}{4l_i^2-H_i^2}.\label{eq:mu}
+\end{equation}
+Its derivative is
+\begin{equation}
+\mu_i'=2b_iJ_iJ_i'=-\frac{8b_i l_i^2H_i}{w_i^4}
+=-\frac{b_i l_i^2s_i}{R_i^4}.\label{eq:mup}
+\end{equation}
+The horizontal damper's Rayleigh function is
+\begin{equation}
+\mathcal D_{Xi}=\frac12c_{Xi}\dot w_i^2
+=\frac12c_{Xi}J_i^2\dot r_i^2.\label{eq:DX}
+\end{equation}
+The equivalent vertical damping coefficient is $c_{Xi}J_i^2$, not $c_{Xi}$.
+
+Let $x_a(t),x_b(t)$ be the guideway inputs. The linearized primary spring energy and dissipation are $k_{1i}(x_{1i}-x_i)^2/2$ and $c_{1i}(\dot x_{1i}-\dot x_i)^2/2$. After using Eqs.~\eqref{eq:static}--\eqref{eq:lev0} to cancel static gravity and levitation terms, the vehicle energies and Rayleigh function are
+\begin{align}
+T={}&\tfrac12m_c\dot x_c^2+\tfrac12I_c\dot\varphi_c^2
+{}+\sum_{i=a,b}\left[\tfrac12m_{1i}\dot x_{1i}^2
+ +\tfrac12\mu_i(r_i)\dot r_i^2\right],\label{eq:T}\\
+\widetilde V={}&\sum_{i=a,b}\left[V_{Xi}(r_i)-V_{Xi}(0)-P_i r_i
+ +\tfrac12k_{1i}(x_{1i}-x_i)^2\right],\label{eq:V}\\
+\mathcal D={}&\sum_{i=a,b}\left[\tfrac12c_{Xi}J_i^2\dot r_i^2
+ +\tfrac12c_{1i}(\dot x_{1i}-\dot x_i)^2\right].\label{eq:D}
+\end{align}
+The $-P_i r_i$ term records the canceled static load; it is not an installed negative-stiffness element.
+
+With $\mathcal L=T-\widetilde V$, Lagrange's equation with Rayleigh dissipation reads
+\begin{equation}
+\frac{\dd}{\dd t}\frac{\partial\mathcal L}{\partial\dot q_j}
+-\frac{\partial\mathcal L}{\partial q_j}
++\frac{\partial\mathcal D}{\partial\dot q_j}=Q_j,
+\qquad \bm Q=p_a\bB_a+p_b\bB_b.\label{eq:L}
+\end{equation}
+For each inerter, the key terms are
+\begin{align}
+\frac{\partial T_{bi}}{\partial\dot{\bq}}&=\mu_i\dot r_i\bB_i,\\
+\frac{\dd}{\dd t}\frac{\partial T_{bi}}{\partial\dot{\bq}}
+&=\bB_i(\mu_i\ddot r_i+\mu_i'\dot r_i^2),\\
+\frac{\partial T_{bi}}{\partial\bq}&=\tfrac12\bB_i\mu_i'\dot r_i^2.
+\end{align}
+Their difference is $\bB_i(\mu_i\ddot r_i+\mu_i'\dot r_i^2/2)$, including the geometric velocity-squared term. The remaining derivatives are
+\begin{equation}
+\frac{\partial\widetilde V_{Xi}}{\partial\bq}=\bB_i(S_i-P_i),
+\qquad \frac{\partial\mathcal D_{Xi}}{\partial\dot{\bq}}
+=\bB_i c_{Xi}J_i^2\dot r_i.\label{eq:grad}
+\end{equation}
+Define the dynamic secondary two-terminal force and primary restoring force as
+\begin{align}
+F_i&=\mu_i\ddot r_i+\tfrac12\mu_i'\dot r_i^2
++c_{Xi}J_i^2\dot r_i+S_i(r_i)-P_i,\label{eq:F}\\
+G_i&=k_{1i}(x_{1i}-x_i)+c_{1i}(\dot x_{1i}-\dot x_i).\label{eq:G}
+\end{align}
+Using exact geometry, the secondary force is also
+\begin{equation}
+\boxed{\begin{aligned}
+F_i={}&b_i\frac{H_i^2}{w_i^2}\ddot r_i
+-\frac{4b_i l_i^2H_i}{w_i^4}\dot r_i^2
++c_{Xi}\frac{H_i^2}{w_i^2}\dot r_i\\
+&+k_{Xi}(w_i-w_{ni})\frac{H_i}{w_i}-P_i.
+\end{aligned}}\label{eq:Ffull}
+\end{equation}
+The negative $\mu_i'$ and velocity-squared coefficient follow from defining $r_i$ as compression. An extension coordinate reverses the coordinate sign without changing the physics.
+
+\section{Four complete equations of motion}
+Substitution of Eqs.~\eqref{eq:B} and \eqref{eq:F}--\eqref{eq:G} into Eq.~\eqref{eq:L} gives
+\begin{align}
+\boxed{m_c\ddot x_c+F_a+F_b=p_a+p_b,}\label{eq:car}\\
+\boxed{I_c\ddot\varphi_c-dF_a+dF_b=-dp_a+dp_b,}\label{eq:pitch}\\
+\boxed{m_{1a}\ddot x_{1a}+G_a-F_a=-p_a,}\label{eq:bogiea}\\
+\boxed{m_{1b}\ddot x_{1b}+G_b-F_b=-p_b.}\label{eq:bogieb}
+\end{align}
+For the passive schematic, set $p_a=p_b=0$. Each $F_i$ contains $\ddot r_i$, so these equations are coupled implicitly in acceleration. With $b_i=0$ and $F_i=K_{2i}r_i+C_{2i}\dot r_i$, their force topology reduces to Li et al.'s Eqs.~(1), (3), and (4). Their pitch equation (2) is recovered after $\theta_2=-\varphi_c$.
+
+\section{Explicit state-dependent mass matrix}
+Write
+\begin{equation}
+N_i=\tfrac12\mu_i'\dot r_i^2+c_{Xi}J_i^2\dot r_i+S_i(r_i)-P_i,
+\qquad F_i=\mu_i\ddot r_i+N_i.\label{eq:N}
+\end{equation}
+With $\bm e_a=(0,0,1,0)^\T$ and $\bm e_b=(0,0,0,1)^\T$, the acceleration equation suitable for integration is
+\begin{equation}
+\boxed{\bM(\bq)\ddot{\bq}
+=\bB_a(p_a-N_a)+\bB_b(p_b-N_b)-\bm e_aG_a-\bm e_bG_b,}\label{eq:matrix}
+\end{equation}
+where
+\begin{equation}
+\bM=\operatorname{diag}(m_c,I_c,m_{1a},m_{1b})
++\mu_a\bB_a\bB_a^\T+\mu_b\bB_b\bB_b^\T.\label{eq:Mouter}
+\end{equation}
+In the selected coordinate order,
+\begin{equation}
+\bM=\begin{bmatrix}
+m_c+\mu_a+\mu_b & d(\mu_b-\mu_a)&-\mu_a&-\mu_b\\
+d(\mu_b-\mu_a)&I_c+d^2(\mu_a+\mu_b)&d\mu_a&-d\mu_b\\
+-\mu_a&d\mu_a&m_{1a}+\mu_a&0\\
+-\mu_b&-d\mu_b&0&m_{1b}+\mu_b
+\end{bmatrix}.\label{eq:Mexpanded}
+\end{equation}
+For positive physical masses and $b_i\ge0$, $\bm z^\T\bM\bm z=\bm z^\T\bM_0\bm z+\sum_i\mu_i(\bB_i^\T\bm z)^2>0$ for any nonzero $\bm z$ inside the physical stroke. Thus $\bM$ is symmetric positive definite. A numerical step evaluates $r_i,H_i,w_i,J_i,\mu_i,N_i,G_i$ from the state and solves Eq.~\eqref{eq:matrix} for $\ddot{\bq}$.
+
+\section{Small-amplitude limit, stability, and energy check}
+At $r_i=\dot r_i=0$, $J_{i0}=\tan\alpha_i$. The local vertical inertance and damping are
+\begin{equation}
+\mu_{i0}=b_i\tan^2\alpha_i,
+\qquad C_{Xi}^{\rm tan}=c_{Xi}\tan^2\alpha_i.\label{eq:localBC}
+\end{equation}
+Since $S_i'=k_{Xi}[J_i^2+(w_i-w_{ni})J_i']$, the tangent stiffness is
+\begin{align}
+K_{Xi}^{\rm tan}
+&=k_{Xi}\left[\tan^2\alpha_i-
+\frac{w_{0i}-w_{ni}}{2l_i\cos^3\alpha_i}\right]\notag\\
+&=k_{Xi}\tan^2\alpha_i-
+\frac{P_i}{2l_i\sin\alpha_i\cos^2\alpha_i}.\label{eq:Ktan}
+\end{align}
+Thus $F_i\simeq\mu_{i0}\ddot r_i+C_{Xi}^{\rm tan}\dot r_i+K_{Xi}^{\rm tan}r_i$. Positive local branch stiffness requires $P_i<2k_{Xi}l_i\sin^3\alpha_i$; full stroke, joint forces, and end stops need separate checks. With $b_i=0$ and $K_{2i}=K_{Xi}^{\rm tan}$, $C_{2i}=C_{Xi}^{\rm tan}$, the first-order vehicle equations coincide with the linear spring-damper model. For $b_i>0$, the added mass matrix $\sum_i\mu_{i0}\bB_i\bB_i^\T$ remains, so stiffness and damping matching alone is insufficient.
+
+For fixed guideway inputs and $p_i=0$, summing the Lagrange equations multiplied by $\dot q_j$ gives
+\begin{equation}
+\frac{\dd}{\dd t}(T+\widetilde V)
+=-\sum_{i=a,b}\left(c_{Xi}J_i^2\dot r_i^2+c_{1i}\dot x_{1i}^2\right)\le0.\label{eq:energy}
+\end{equation}
+This independently checks the sign and $J_i^2$ factor of the transformed horizontal damper.
+
+\section{Model limits}
+The derivation excludes roll, lateral motion, bogie pitch, rod mass, joint friction, impacts, and hysteretic HTS levitation. The primary suspension is an operating-point linearization inherited from Li et al. If a physical IBXS damper is vertical rather than connected between the lateral hinges, replace Eq.~\eqref{eq:DX} by $c_{Xi}\dot r_i^2/2$; Eq.~\eqref{eq:F} then contains $c_{Xi}\dot r_i$, while the spring and inerter geometry is unchanged. Different terminal locations for the three horizontal elements require separate kinematic Jacobians.
+
+\begin{thebibliography}{1}
+\bibitem{Li2021} Q. Li, Z. Deng, L. Wang, H. Li, J. Zhang, and E. F. Rodriguez,
+``Active vibration control of secondary suspension based on high-temperature superconducting maglev vehicle system,''
+\emph{Physica C}, vol.~585, article 1353872, 2021.
+\href{https://doi.org/10.1016/j.physc.2021.1353872}{doi:10.1016/j.physc.2021.1353872}.
+\end{thebibliography}
+\end{document}

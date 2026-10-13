@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "model": "TIXS",
+  "vehicle": {
+    "mc": 8500,
+    "Ic": 192500,
+    "m1": 4032,
+    "d": 3.8,
+    "k1": 3542400,
+    "c1": 2419.2,
+    "g": 9.81
+  },
+  "secondary": {
+    "k": 730000,
+    "c": 50000,
+    "b": 500,
+    "l": 1,
+    "alpha_deg": 45,
+    "damper_orientation": "vertical"
+  },
+  "track": {
+    "speed_km_h": 500,
+    "Av": 4.032e-07,
+    "OmegaR": 0.0206,
+    "OmegaC": 0.8246,
+    "seed": 127,
+    "rng_algorithm": "twister",
+    "record_seconds": 20,
+    "sample_count": 32768,
+    "f_min_hz": 1.0,
+    "f_max_hz": 80,
+    "amplitude_scale": 0.62
+  },
+  "solver": {
+    "method": "ode45",
+    "rel_tol": 1e-08,
+    "abs_tol": 1e-10,
+    "max_step_s": 0.002,
+    "output_step_s": 0.002,
+    "duration_s": 10,
+    "initial_state": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "refinement": {
+    "enabled": true,
+    "rel_tol": 1e-09,
+    "abs_tol": 1e-11,
+    "max_step_s": 0.001,
+    "rms_difference_limit_percent": 0.5
+  },
+  "reference_track_csv": "",
+  "units": {
+    "vehicle": {
+      "mc": "kg",
+      "Ic": "kg m^2",
+      "m1": "kg",
+      "d": "m",
+      "k1": "N/m",
+      "c1": "N s/m",
+      "g": "m/s^2"
+    },
+    "secondary": {
+      "k": "N/m transverse",
+      "c": "N s/m vertical",
+      "b": "kg transverse inertance",
+      "l": "m",
+      "alpha_deg": "degree"
+    },
+    "track": {
+      "speed_km_h": "km/h",
+      "Av": "m with radians dimensionless; inferred from formula",
+      "OmegaR": "rad/m",
+      "OmegaC": "rad/m",
+      "record_seconds": "s",
+      "f_min_hz": "Hz",
+      "f_max_hz": "Hz",
+      "amplitude_scale": "dimensionless"
+    },
+    "state_order": [
+      "body_heave_m",
+      "body_pitch_rad",
+      "front_bogie_heave_m",
+      "rear_bogie_heave_m",
+      "body_heave_velocity_m_s",
+      "body_pitch_velocity_rad_s",
+      "front_bogie_velocity_m_s",
+      "rear_bogie_velocity_m_s"
+    ]
+  }
+}

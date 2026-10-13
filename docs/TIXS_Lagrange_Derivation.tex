@@ -1,0 +1,443 @@
+% Compile with pdfLaTeX, XeLaTeX, or LuaLaTeX. This source is ASCII-only.
+\documentclass[a4paper,12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\numberwithin{equation}{section}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\dd}{\mathrm d}
+\title{Dynamics of a Transverse Inerter-Based X-Structure (TIXS) Isolator\\
+and Its Application to an HTS Maglev Vehicle Secondary Suspension}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Scope and conventions}
+Sections 2 and 3 reconstruct the exact TIXS model in Secs.~2.1--2.2 and Eqs.~(1)--(15) of Wang et al.~\cite{wang2024}. Sections 4 and 5 derive a new four-degree-of-freedom (4-DOF) vehicle model by replacing the two secondary air-spring branches in the HTS maglev model of Li et al.~\cite{li2021}, Fig.~3 and Eqs.~(1)--(4), with two TIXS branches. The combined vehicle equations below are a derivation from the two papers, not equations already presented by Li et al.
+
+All vertical displacements below are positive upward. Positive car-body pitch raises the front attachment point. The vehicle coordinates in Sections 3--5 are measured from a loaded static equilibrium, so constant gravity terms cancel from their perturbation equations. Section 2 instead reproduces the unpreloaded, gravity-free reference model of Wang et al.; its zero-displacement configuration is not a self-supported equilibrium under a nonzero weight. The rods and hinges are ideal and massless; car-body roll, lateral motion, bogie pitch, and nonlinear HTS levitation hysteresis are excluded. These assumptions match the scope of the reduced-order models and must be revisited for a full vehicle model.
+
+\section{Exact dynamics of one TIXS branch}
+\subsection{Geometric constraint}
+The TIXS of Wang et al.~\cite{wang2024}, Figs.~2--3, has four identical rigid rods of length $l$, a transverse spring of stiffness $k$, a transverse inerter of inertance $b$, and a vertical damper of coefficient $c$. Let $y$ be the upper terminal displacement and $z$ the base displacement. Define their relative vertical displacement by
+\begin{equation}
+ u=y-z.
+\end{equation}
+The reference rod angle measured from the horizontal is $\alpha$, and the reference vertical separation is $h_0=2l\sin\alpha$. Set
+\begin{equation}
+\begin{aligned}
+s(u)&=l\sin\alpha+\frac{u}{2},&
+R(u)&=\sqrt{l^2-s(u)^2},\\
+h(u)&=2s(u)=h_0+u.
+\end{aligned}
+\label{eq:geometry-defs}
+\end{equation}
+Here $s$ and $R$ are the vertical and horizontal projections of one rod. If $w$ is the instantaneous distance between the two lateral hinges and $x$ is its shortening from the reference configuration, the rigid-rod constraint gives
+\begin{equation}
+\left(l\cos\alpha-\frac{x}{2}\right)^2
++\left(l\sin\alpha+\frac{u}{2}\right)^2=l^2.
+\label{eq:geometry}
+\end{equation}
+Therefore,
+\begin{equation}
+\begin{aligned}
+w(u)&=2R(u),\\
+x(u)&=2l\cos\alpha-w(u)\\
+    &=2l\cos\alpha-2R(u).
+\end{aligned}
+\label{eq:lateral-x}
+\end{equation}
+These reproduce Eqs.~(1)--(3) of Wang et al. on the physical, non-inverted branch. The allowed range is $0<h(u)<2l$, or
+\begin{equation}
+ -2l\sin\alpha<u<2l(1-\sin\alpha).
+ \label{eq:range}
+\end{equation}
+Since $s'=1/2$ and $R'=-s/(2R)$, direct differentiation yields
+\begin{equation}
+\begin{aligned}
+x'(u)&=\frac{s}{R},\\
+x''(u)&=\frac{l^2}{2R^3}.
+\end{aligned}
+\label{eq:x-derivs}
+\end{equation}
+The corresponding velocity and acceleration are
+\begin{equation}
+\begin{aligned}
+\dot x&=\frac{s}{R}\dot u,\\
+\ddot x&=\frac{s}{R}\ddot u+\frac{l^2}{2R^3}\dot u^2.
+\end{aligned}
+\label{eq:x-accel}
+\end{equation}
+Equivalently, the instantaneous rod angle $\theta$ satisfies $\sin\theta=s/l$, so $x'=\tan\theta$ and $\dot w=-\tan\theta\,\dot u$. Replacing $\tan\theta$ by the constant $\tan\alpha$ is a subsequent small-motion approximation, not an exact kinematic identity.
+
+\subsection{Kinetic energy, potential energy, and dissipation}
+Let $M_1$ be the isolated mass. In the original unpreloaded TIXS model, the spring has zero deformation at $u=0$. Gravity is omitted in this reference equation; a physical mass at this configuration would require a separate static-load path. The kinetic energy $T$, spring potential $V$, and Rayleigh dissipation function $\mathcal D$ are
+\begin{equation}
+\begin{aligned}
+T&=\frac12M_1\dot y^2+\frac12b\dot x^2\\
+ &=\frac12M_1(\dot u+\dot z)^2
+   +\frac12m_X(u)\dot u^2,\\
+V&=\frac12kx(u)^2,\qquad
+\mathcal D=\frac12c\dot u^2.
+\end{aligned}
+\label{eq:single-energies}
+\end{equation}
+where the displacement-dependent equivalent vertical inertance is
+\begin{equation}
+ m_X(u)=b[x'(u)]^2
+ =b\frac{s^2}{l^2-s^2}=b\tan^2\theta.
+ \label{eq:single-meff}
+\end{equation}
+Its derivative is
+\begin{equation}
+ m_X'(u)=\frac{bl^2s}{(l^2-s^2)^2}=\frac{bl^2s}{R^4}.
+ \label{eq:single-mprime}
+\end{equation}
+The inertance $b$ is a two-terminal dynamic parameter. It cannot be added to $M_1$ as a constant mass without first transforming the transverse motion through the X geometry.
+
+\subsection{Lagrange derivation of the exact equation}
+Use $u$ as the generalized coordinate and $L=T-V$. The required derivatives are
+\begin{align}
+\frac{\partial T}{\partial\dot u}
+ &=M_1(\dot u+\dot z)+m_X\dot u,\\
+\frac{\dd}{\dd t}\frac{\partial T}{\partial\dot u}
+ &=M_1(\ddot u+\ddot z)+m_X\ddot u+m_X'\dot u^2,\\
+\frac{\partial T}{\partial u}
+ &=\frac12m_X'\dot u^2,\\
+\frac{\partial V}{\partial u}
+ &=kxx',\\
+\frac{\partial\mathcal D}{\partial\dot u}
+ &=c\dot u.
+\end{align}
+Inserting these into the Lagrange equation
+$\dd(\partial L/\partial\dot u)/\dd t-\partial L/\partial u
++\partial\mathcal D/\partial\dot u=0$ gives
+\begin{equation}
+ \boxed{[M_1+m_X(u)]\ddot u
+ +\frac12m_X'(u)\dot u^2+c\dot u+kx(u)x'(u)
+ =-M_1\ddot z.}
+ \label{eq:tixs-compact}
+\end{equation}
+Substituting Eqs.~\eqref{eq:lateral-x}, \eqref{eq:x-derivs},
+\eqref{eq:single-meff}, and \eqref{eq:single-mprime} gives the explicit form corresponding to Eq.~(9) of Wang et al.:
+\begin{equation}
+ \boxed{\begin{aligned}
+ &\left(M_1+b\frac{s^2}{l^2-s^2}\right)\ddot u
+ +\frac{bl^2s}{2(l^2-s^2)^2}\dot u^2+c\dot u\\
+ &\quad+k\left(2l\cos\alpha-2\sqrt{l^2-s^2}\right)
+       \frac{s}{\sqrt{l^2-s^2}}
+ =-M_1\ddot z.
+ \end{aligned}}
+ \label{eq:tixs-full}
+\end{equation}
+The second term is a geometry-induced velocity-squared term. It is nonnegative on the physical branch $0<s<l$ when $b\geq0$, and must be retained in the exact nonlinear equation. As an independent check, the transverse inerter force is $b\ddot x$. Virtual-work transformation gives the vertical generalized force
+$b\ddot x\,x'=m_X\ddot u+bx'x''\dot u^2$, with $bx'x''=m_X'/2$, exactly as in Eq.~\eqref{eq:tixs-compact}.
+
+\subsection{Connection to the paper's dimensionless equation}
+Define
+\begin{equation}
+\begin{aligned}
+\omega_n&=\sqrt{k/M_1},&
+U&=\frac{u}{2l},&
+Z&=\frac{z_m}{2l},\\
+\tau&=\omega_nt,&
+\Omega&=\frac{\omega}{\omega_n},\\
+\delta&=\frac{b}{M_1},&
+\zeta&=\frac{c}{2M_1\omega_n}.
+\end{aligned}
+\end{equation}
+For harmonic base motion $z=z_m\cos\omega t$, let primes denote differentiation with respect to $\tau$ and put $a=U+\sin\alpha$. Dividing Eq.~\eqref{eq:tixs-full} by $2lk$ yields
+\begin{equation}
+\boxed{\begin{aligned}
+U''+\delta\frac{a^2}{1-a^2}U''
+&+\delta\frac{a}{(1-a^2)^2}(U')^2
+ +2\zeta U'\\
+&+\frac{(\cos\alpha-\sqrt{1-a^2})a}{\sqrt{1-a^2}}
+ =Z\Omega^2\cos(\Omega\tau).
+\end{aligned}}
+\label{eq:nondimensional}
+\end{equation}
+This is the exact-geometry equation corresponding to Eqs.~(10)--(15) of Wang et al. Their later third-order Taylor approximations are not used in the vehicle derivation.
+
+\section{The four-DOF HTS maglev vehicle before replacement}
+Li et al.~\cite{li2021} model the car body by its vertical translation and pitch and model each bogie--Dewar assembly by one vertical translation. Let the car-body mass and pitch inertia be $m_2,I_2$, the front and rear bogie masses be $m_{1a},m_{1b}$, and the distances from the car-body center to the front and rear secondary-suspension attachment points be $L_a,L_b$. Primary HTS levitation is linearized with stiffnesses $K_{1i}$ and damping coefficients $C_{1i}$; guideway inputs are $\xi_a,\xi_b$.
+
+For a consistent upward coordinate system, denote the car-body, front-bogie, and rear-bogie vertical motions by $z_c,z_a,z_b$, and pitch by $\varphi$. Write $F_{2i}$ for the downward restoring-force component applied to the car body by secondary branch $i$, and $p_i$ for the upward actuator force on the car body. Newton's equations, with the same force topology as Eqs.~(1)--(4) of Li et al., are
+\begin{align}
+m_2\ddot z_c+F_{2a}+F_{2b}
+ &=p_a+p_b,\label{eq:original-body}\\
+I_2\ddot\varphi+L_aF_{2a}-L_bF_{2b}
+ &=L_ap_a-L_bp_b,\label{eq:original-pitch}\\
+m_{1a}\ddot z_a+P_a-F_{2a}
+ &=-p_a,\label{eq:original-front}\\
+m_{1b}\ddot z_b+P_b-F_{2b}
+ &=-p_b.\label{eq:original-rear}
+\end{align}
+With linear air-spring secondary suspension, these force components are
+\begin{equation}
+\begin{aligned}
+F_{2i}^{\mathrm{lin}}
+ &=K_{2i}r_i+C_{2i}\dot r_i,\\
+P_i
+ &=K_{1i}(z_i-\xi_i)
+   +C_{1i}(\dot z_i-\dot\xi_i).
+\end{aligned}
+\label{eq:original-constitutive}
+\end{equation}
+The $F_{k2i}$ and $F_{c2i}$ of Li et al. correspond to the elastic and viscous parts of $F_{2i}^{\mathrm{lin}}$, and their active force $f_{ci}$ corresponds to $p_i$. Each $p_i$ denotes the resultant force of the actuators on bogie $i$; Li et al. describe two physical actuators per bogie. Likewise, each secondary stiffness and damping coefficient here is the equivalent coefficient of one complete bogie branch, not necessarily that of one physical device. Their Fig.~3 uses differing arrow directions for some displacements; the definitions above fix all signs explicitly. The $F_{2i}$ are signed generalized restoring forces, so a negative static value represents an upward force on the car body. In the passive case $p_a=p_b=0$. Retaining the actuators leaves their equal-and-opposite forces in Eqs.~\eqref{eq:original-body}--\eqref{eq:original-rear}.
+
+\section{TIXS replacement of the secondary suspension}
+\subsection{Attachment kinematics}
+Define the generalized coordinate and two constant incidence vectors by
+\begin{equation}
+\begin{aligned}
+\vect q&=(z_c,\varphi,z_a,z_b)^{\mathsf T},\\
+\vect B_a&=(1,L_a,-1,0)^{\mathsf T},\\
+\vect B_b&=(1,-L_b,0,-1)^{\mathsf T}.
+\end{aligned}
+\label{eq:incidence}
+\end{equation}
+For small rigid-body pitch, the front and rear car-body attachment displacements are $z_c+L_a\varphi$ and $z_c-L_b\varphi$. Thus
+\begin{align}
+r_a
+ &=z_c+L_a\varphi-z_a
+ =\vect B_a^{\mathsf T}\vect q,
+ \label{eq:relative-front}\\
+r_b
+ &=z_c-L_b\varphi-z_b
+ =\vect B_b^{\mathsf T}\vect q.
+ \label{eq:relative-rear}
+\end{align}
+For either branch $i\in\{a,b\}$,
+\begin{equation}
+\dot r_i=\vect B_i^{\mathsf T}\dot{\vect q},
+\qquad
+\ddot r_i=\vect B_i^{\mathsf T}\ddot{\vect q}.
+\label{eq:relative-derivs}
+\end{equation}
+The small-angle approximation applies only to attachment-point kinematics. The X-structure geometry within each TIXS remains exact over its admissible stroke.
+
+\subsection{Static load and necessary spring preload}
+An important difference arises when an air spring is fully replaced. The unpreloaded spring of the original TIXS has zero vertical elastic force at $r_i=0$. Two such branches alone cannot support a nonzero car-body weight at that reference configuration. One must either retain a separate static-load path or preload the transverse springs. We use preload and define, for $i\in\{a,b\}$,
+\begin{equation}
+\begin{aligned}
+s_i&=l_i\sin\alpha_i+\frac{r_i}{2},&
+R_i&=\sqrt{l_i^2-s_i^2},\\
+w_i(r_i)&=2R_i,&
+w_{0i}&=2l_i\cos\alpha_i,\\
+V_i(r_i)&=\frac12k_i[w_i(r_i)-w_{ni}]^2.
+\end{aligned}
+\label{eq:preload-energy}
+\end{equation}
+Here $w_{ni}$ is the natural transverse spring length. The generalized vertical spring force at the static operating point is
+\begin{equation}
+ F_{0i}=V_i'(0)=-k_i(w_{0i}-w_{ni})\tan\alpha_i.
+ \label{eq:static-force}
+\end{equation}
+Assume that the actuators have zero static bias, that these are the only two branches supporting the car body, and that there is no externally applied static pitch moment. The car-body static force and moment balances give
+\begin{equation}
+\begin{aligned}
+F_{0a}+F_{0b}&=-m_2g,\\
+L_aF_{0a}-L_bF_{0b}&=0,\\
+F_{0a}&=-\frac{m_2gL_b}{L_a+L_b},\\
+F_{0b}&=-\frac{m_2gL_a}{L_a+L_b}.
+\end{aligned}
+\label{eq:static-equilibrium}
+\end{equation}
+Write $P_i=-F_{0i}>0$ for the static load supported by branch $i$. The required natural spring length is
+\begin{equation}
+w_{ni}=2l_i\cos\alpha_i-\frac{P_i}{k_i\tan\alpha_i}.
+\label{eq:required-natural-length}
+\end{equation}
+Its physical feasibility requires $w_{ni}>0$, adequate spring travel, and strength checks. The stronger passive-stability condition is derived in Section~\ref{sec:stability-conditioning}. If the original unpreloaded TIXS is used instead, a separate static-load path is necessary.
+
+For completeness, let $L_{0i}$ be the upward static HTS levitation force acting on bogie $i$, and let the guideway reference position be $\xi_i=0$. Its static force balance is
+\begin{equation}
+L_{0i}=m_{1i}g-F_{0i}=m_{1i}g+P_i.
+\label{eq:static-primary}
+\end{equation}
+Thus the primary levitation supports both the bogie weight and the load transferred from the car body. If an actuator supplies a nonzero static force $p_{0i}$, both Eqs.~\eqref{eq:static-equilibrium} and \eqref{eq:static-primary} must include that bias; the equations below take $p_{0i}=0$ and interpret $p_i$ as a dynamic force perturbation.
+
+\subsection{Two-terminal inertial, elastic, and damping forces}
+The transverse inerter energy of branch $i$ is
+\begin{equation}
+\begin{aligned}
+T_{Xi}
+ &=\frac12b_i\dot w_i^2
+ =\frac12\mu_i(r_i)\dot r_i^2,\\
+\mu_i(r_i)
+ &=b_i\frac{s_i^2}{R_i^2},\\
+\mu_i'(r_i)
+ &=\frac{b_il_i^2s_i}{R_i^4}.
+\end{aligned}
+\label{eq:two-terminal-inertia}
+\end{equation}
+The damper contributes $\mathcal D_i=c_i\dot r_i^2/2$. Lagrange's equation in the relative branch coordinate gives its dynamic force after subtracting the static preload:
+\begin{equation}
+ \boxed{\Delta F_i
+ =\mu_i(r_i)\ddot r_i
+ +\frac12\mu_i'(r_i)\dot r_i^2
+ +c_i\dot r_i+V_i'(r_i)-F_{0i}.}
+ \label{eq:branch-force}
+\end{equation}
+The spring term is
+\begin{equation}
+\begin{aligned}
+w_i'&=-\frac{s_i}{R_i},\\
+V_i'(r_i)
+ &=k_i(w_i-w_{ni})w_i'\\
+ &=-k_i(2R_i-w_{ni})\frac{s_i}{R_i}.
+\end{aligned}
+\label{eq:branch-spring}
+\end{equation}
+Consequently, the exact force can also be written without implicit derivatives:
+\begin{equation}
+ \boxed{\begin{aligned}
+ \Delta F_i={}&b_i\frac{s_i^2}{l_i^2-s_i^2}\ddot r_i
+ +\frac{b_il_i^2s_i}{2(l_i^2-s_i^2)^2}\dot r_i^2
+ +c_i\dot r_i\\
+ &-k_i\left(2\sqrt{l_i^2-s_i^2}-w_{ni}\right)
+ \frac{s_i}{\sqrt{l_i^2-s_i^2}}-F_{0i}.
+ \end{aligned}}
+ \label{eq:branch-force-explicit}
+\end{equation}
+When $w_{ni}=w_{0i}$, $F_{0i}=0$ and the spring term becomes $k_i(2l_i\cos\alpha_i-2R_i)s_i/R_i$, agreeing with the isolated TIXS equation. The inerter acts between two moving terminals, so its energy belongs to the coupled vehicle rather than to either terminal mass alone.
+
+\subsection{Vehicle Lagrangian and four scalar equations}
+Let $\vect e_a=(0,0,1,0)^{\mathsf T}$ and $\vect e_b=(0,0,0,1)^{\mathsf T}$. Before subtracting equilibrium terms, the complete gravitational and elastic potential is
+\begin{equation}
+\begin{aligned}
+V_{\mathrm{full}}={}&\sum_{i=a,b}V_i(r_i)+m_2gz_c\\
+&+\sum_{i=a,b}\left[(m_{1i}g-L_{0i})z_i
+ +\frac12K_{1i}(z_i-\xi_i)^2\right].
+\end{aligned}
+\label{eq:vehicle-full-potential}
+\end{equation}
+At $\xi_i=0$, substituting Eqs.~\eqref{eq:static-equilibrium} and \eqref{eq:static-primary} cancels every term linear in $\vect q$. Removing a coordinate-independent constant then gives the perturbation potential below. The total kinetic energy, perturbation potential, and Rayleigh function are
+\begin{align}
+T={}&\frac12m_2\dot z_c^2+\frac12I_2\dot\varphi^2
+ +\frac12m_{1a}\dot z_a^2+\frac12m_{1b}\dot z_b^2
+ \notag\\
+&+\sum_{i=a,b}\frac12\mu_i(r_i)\dot r_i^2,
+\label{eq:vehicle-T}\\
+\widetilde V={}&
+\sum_{i=a,b}\left[
+V_i(r_i)-V_i(0)-F_{0i}r_i
+\right.\notag\\
+&\left.\hspace{4em}
++\frac12K_{1i}(z_i-\xi_i)^2
+\right],
+\label{eq:vehicle-V}\\
+\mathcal D={}&
+\sum_{i=a,b}\left[
+\frac12c_i\dot r_i^2
++\frac12C_{1i}(\dot z_i-\dot\xi_i)^2
+\right].
+\label{eq:vehicle-D}
+\end{align}
+The term $-F_{0i}r_i$ therefore represents the canceled static gravity and levitation forces; it is not an additional physical spring. For a time-varying $\xi_i$, terms depending only on $\xi_i$ do not affect the equations of motion.
+
+Virtual work uses $\delta r_i=\vect B_i^{\mathsf T}\delta\vect q$. Thus a branch force contributes $\vect B_i\Delta F_i$ to the generalized restoring force. Lagrange's equations become
+\begin{equation}
+\boxed{\begin{aligned}
+\vect M_0\ddot{\vect q}
+&+\sum_{i=a,b}\vect B_i\Delta F_i
+ +\vect e_aP_a+\vect e_bP_b\\
+&=\vect B_ap_a+\vect B_bp_b.
+\end{aligned}}
+\label{eq:vehicle-vector-implicit}
+\end{equation}
+Here $\vect M_0=\operatorname{diag}(m_2,I_2,m_{1a},m_{1b})$.
+Expanding each degree of freedom gives
+\begin{align}
+m_2\ddot z_c+\Delta F_a+\Delta F_b
+ &=p_a+p_b,\label{eq:vehicle-body}\\
+I_2\ddot\varphi+L_a\Delta F_a-L_b\Delta F_b
+ &=L_ap_a-L_bp_b,\label{eq:vehicle-pitch}\\
+m_{1a}\ddot z_a+P_a-\Delta F_a
+ &=-p_a,\label{eq:vehicle-front}\\
+m_{1b}\ddot z_b+P_b-\Delta F_b
+ &=-p_b.\label{eq:vehicle-rear}
+\end{align}
+These have the same attachment topology as Li et al.'s four original equations. The linear secondary force has been replaced by the exact nonlinear TIXS force $\Delta F_i$. Because that force contains $\ddot r_i$, Eqs.~\eqref{eq:vehicle-body}--\eqref{eq:vehicle-rear} are coupled implicitly in the accelerations. The next form is directly suitable for numerical integration.
+
+\subsection{State-dependent vehicle mass matrix}
+Separate the acceleration-dependent part of Eq.~\eqref{eq:branch-force} by defining
+\begin{equation}
+\begin{aligned}
+H_i(r_i,\dot r_i)
+ &=\frac12\mu_i'(r_i)\dot r_i^2
+   +c_i\dot r_i+V_i'(r_i)-F_{0i},\\
+P_i
+ &=K_{1i}(z_i-\xi_i)
+   +C_{1i}(\dot z_i-\dot\xi_i).
+\end{aligned}
+\end{equation}
+Since $\ddot r_i=\vect B_i^{\mathsf T}\ddot{\vect q}$, moving $\mu_i\ddot r_i$ to the mass matrix yields
+\begin{equation}
+\boxed{\begin{aligned}
+\vect M(\vect q)\ddot{\vect q}
+={}&\vect B_ap_a+\vect B_bp_b\\
+ &-\vect B_aH_a-\vect B_bH_b\\
+ &-\vect e_aP_a-\vect e_bP_b.
+\end{aligned}}
+\label{eq:vehicle-matrix-eom}
+\end{equation}
+\begin{equation}
+\vect M(\vect q)
+=\vect M_0
++\sum_{i=a,b}\mu_i(r_i)\vect B_i\vect B_i^{\mathsf T}.
+\label{eq:mass-outer}
+\end{equation}
+Writing $\mu_a=\mu_a(r_a)$ and $\mu_b=\mu_b(r_b)$, all entries are
+\begin{equation}
+\vect M=\begin{bmatrix}
+m_2+\mu_a+\mu_b & L_a\mu_a-L_b\mu_b & -\mu_a & -\mu_b\\
+L_a\mu_a-L_b\mu_b & I_2+L_a^2\mu_a+L_b^2\mu_b & -L_a\mu_a & L_b\mu_b\\
+-\mu_a & -L_a\mu_a & m_{1a}+\mu_a & 0\\
+-\mu_b & L_b\mu_b & 0 & m_{1b}+\mu_b
+\end{bmatrix}.
+\label{eq:mass-expanded}
+\end{equation}
+For positive masses and $b_i\geq0$, the matrix $\vect M$ is symmetric positive definite when $R_i>0$. During integration, compute $r_i,s_i,R_i,\mu_i,H_i,P_i$ from the current state and solve Eq.~\eqref{eq:vehicle-matrix-eom} for $\ddot{\vect q}$. Neither the state dependence of $\mu_i$ nor the term $\mu_i'\dot r_i^2/2$ may be omitted in the exact model.
+
+\subsection{Small-amplitude limit and consistency checks}
+\label{sec:stability-conditioning}
+About $r_i=\dot r_i=0$, the velocity-squared term is second order. The equilibrium equivalent inertance is
+\begin{equation}
+ \mu_{i0}=b_i\tan^2\alpha_i.
+\end{equation}
+The tangent stiffness follows from $V_i''=k_i[(w_i')^2+(w_i-w_{ni})w_i'']$, with $w_i'(0)=-\tan\alpha_i$ and $w_i''(0)=-1/(2l_i\cos^3\alpha_i)$:
+\begin{equation}
+ K_{Ti}=V_i''(0)
+ =k_i\left[\tan^2\alpha_i
+ -\frac{w_{0i}-w_{ni}}{2l_i\cos^3\alpha_i}\right].
+ \label{eq:tangent-stiffness}
+\end{equation}
+Using Eq.~\eqref{eq:required-natural-length} gives the load-dependent form
+\begin{equation}
+K_{Ti}=\frac{2k_i l_i\sin^3\alpha_i-P_i}
+              {2l_i\sin\alpha_i\cos^2\alpha_i}.
+\label{eq:loaded-tangent-stiffness}
+\end{equation}
+With positive primary stiffnesses and $0<\alpha_i<\pi/2$, the passive equilibrium has a positive-definite linearized stiffness matrix precisely when
+\begin{equation}
+P_i<2k_i l_i\sin^3\alpha_i
+\qquad (i=a,b).
+\label{eq:passive-stability}
+\end{equation}
+Equality gives a neutral direction, and exceeding the bound gives a negative-stiffness direction even though the mass matrix remains positive definite. The separate natural-length condition $w_{ni}>0$ requires $P_i<2k_i l_i\sin\alpha_i$; Eq.~\eqref{eq:passive-stability} is the stricter bound on the physical branch. A final design must additionally check strength, clearances, and the full response stroke.
+
+Hence $\Delta F_i\simeq\mu_{i0}\ddot r_i+c_i\dot r_i+K_{Ti}r_i$ to first order. Without preload, $w_{ni}=w_{0i}$ and $K_{Ti}=k_i\tan^2\alpha_i$. If additionally $b_i=0$, the vehicle equations reduce to the conventional linear secondary spring-damper form with $K_{2i}=K_{Ti}$ and $C_{2i}=c_i$. When $b_i>0$, the linearized vehicle still contains the coupled added-mass term $\sum_i\mu_{i0}\vect B_i\vect B_i^{\mathsf T}$, so matching secondary stiffness and damping alone does not reproduce the original air-spring vehicle.
+
+\section{Limits of the derived model}
+``Exact'' refers here to the rigid-rod geometry and two-terminal inertance transformation without Taylor truncation. It does not account for rod mass, joint friction, end stops, lateral coupling, or a nonlinear hysteretic HTS levitation law. Each branch must remain within $0<2s_i<2l_i$. For $\varepsilon_i=l_i-s_i\to0^+$ and $b_i>0$, $\mu_i\sim b_i l_i/(2\varepsilon_i)$ and $\mu_i'/2\sim b_i l_i/(8\varepsilon_i^2)$; numerical simulation therefore requires an explicit margin from this endpoint. At $s_i\to0^+$, the mapping $w_i'(r_i)\to0$ and the transverse spring loses its first-order vertical mechanical advantage. Although $\vect M$ is positive definite at every interior point for positive masses, positive definiteness alone does not bound its condition number or establish static stability. A reported numerical condition number should first scale pitch to a length coordinate, such as $L_*\varphi$, because the raw matrix mixes translational and angular coordinates. The primary suspension is still the linearized $K_{1i},C_{1i}$ model of Li et al. Set $p_a=p_b=0$ for passive TIXS operation. A PID or fuzzy-PID control law may be added through $p_i$, but it is not implied by the mechanical derivation.
+
+\begin{thebibliography}{9}
+\bibitem{wang2024} Y. Wang, P. Wang, X. Qiao, H. Meng, and L.-Q. Chen, ``An inerter-based X-structure vibration isolator,'' \emph{Acta Mechanica}, vol.~235, pp.~2539--2573, 2024. \href{https://doi.org/10.1007/s00707-023-03846-2}{doi:10.1007/s00707-023-03846-2}.
+\bibitem{li2021} Q. Li, Z. Deng, L. Wang, H. Li, J. Zhang, and E. F. Rodriguez, ``Active vibration control of secondary suspension based on high-temperature superconducting maglev vehicle system,'' \emph{Physica C}, vol.~585, 1353872, 2021. \href{https://doi.org/10.1016/j.physc.2021.1353872}{doi:10.1016/j.physc.2021.1353872}.
+\end{thebibliography}
+\end{document}

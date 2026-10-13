@@ -1,0 +1,41 @@
+{
+  "generated_utc": "2026-10-13T07:53:14.374407+00:00",
+  "python": "3.12.14",
+  "numpy": "2.2.6",
+  "matplotlib": "3.10.3",
+  "command": "python3 pics/TIXS/smoke_output_refactor_20261013/plot_time_histories.py --overwrite",
+  "source_csv": "data/TIXS/smoke_output_refactor_20261013/time_histories.csv",
+  "source_metadata": "data/TIXS/smoke_output_refactor_20261013/metadata.json",
+  "script_sha256": "755e4114701463dc177873f00a9f094f91cd47286585936609c89fb5223f6af6",
+  "source_csv_sha256": "507c073ace1b13a7b3a560784169919d21ad5fff58e2de00fa329bd50d18d3a4",
+  "seed": 127,
+  "solver": {
+    "method": "ode45",
+    "rel_tol": 1e-08,
+    "abs_tol": 1e-10,
+    "max_step_s": 0.002,
+    "output_step_s": 0.002,
+    "duration_s": 1,
+    "initial_state": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "figure_size_inches": [
+    9,
+    6
+  ],
+  "intentional_regeneration": true,
+  "outputs": [
+    "pics/TIXS/smoke_output_refactor_20261013/body_acceleration.png",
+    "pics/TIXS/smoke_output_refactor_20261013/body_acceleration.pdf",
+    "pics/TIXS/smoke_output_refactor_20261013/linear_tixs_acceleration_comparison.png",
+    "pics/TIXS/smoke_output_refactor_20261013/linear_tixs_acceleration_comparison.pdf"
+  ]
+}

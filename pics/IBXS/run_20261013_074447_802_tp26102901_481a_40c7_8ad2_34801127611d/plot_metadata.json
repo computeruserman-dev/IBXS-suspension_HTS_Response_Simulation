@@ -1,0 +1,39 @@
+{
+  "generated_utc": "2026-10-13T07:53:11.635220+00:00",
+  "python": "3.12.14",
+  "numpy": "2.2.6",
+  "matplotlib": "3.10.3",
+  "command": "python3 pics/IBXS/run_20261013_074447_802_tp26102901_481a_40c7_8ad2_34801127611d/plot_time_histories.py",
+  "source_csv": "data/IBXS/run_20261013_074447_802_tp26102901_481a_40c7_8ad2_34801127611d/time_histories.csv",
+  "source_metadata": "data/IBXS/run_20261013_074447_802_tp26102901_481a_40c7_8ad2_34801127611d/metadata.json",
+  "script_sha256": "755e4114701463dc177873f00a9f094f91cd47286585936609c89fb5223f6af6",
+  "source_csv_sha256": "70e325021f06917e941a46168f09d23205d9e7d4514c2f578307d23556365b69",
+  "seed": 127,
+  "solver": {
+    "method": "ode45",
+    "rel_tol": 1e-08,
+    "abs_tol": 1e-10,
+    "max_step_s": 0.002,
+    "output_step_s": 0.002,
+    "duration_s": 10,
+    "initial_state": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "figure_size_inches": [
+    9,
+    6
+  ],
+  "intentional_regeneration": false,
+  "outputs": [
+    "pics/IBXS/run_20261013_074447_802_tp26102901_481a_40c7_8ad2_34801127611d/body_acceleration.png",
+    "pics/IBXS/run_20261013_074447_802_tp26102901_481a_40c7_8ad2_34801127611d/body_acceleration.pdf"
+  ]
+}
