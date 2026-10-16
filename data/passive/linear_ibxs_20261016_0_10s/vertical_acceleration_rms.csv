@@ -1,0 +1,3 @@
+model,start_time_s,end_time_s,sample_count,rms_vertical_acceleration_m_s2,peak_abs_vertical_acceleration_m_s2,rms_reduction_vs_linear_percent
+Linear,0.0,10.0,5001,0.5285359191751396,1.34861482476861,0.0
+IBXS,0.0,10.0,5001,0.24750111835760183,0.945434309492274,53.17231821370536

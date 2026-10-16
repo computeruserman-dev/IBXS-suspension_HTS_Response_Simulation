@@ -2,6 +2,8 @@
 
 ## Active configuration files
 
+- `passive_linear_ibxs_20261016.json`: CSV-only passive comparison, run ID `linear_ibxs_20261016_0_10s`; source runs, downward-positive coordinate mapping for the conventional linear baseline, full-record RMS and one-sided Welch PSD/dB settings. Data are in `data/passive/<run_id>/`, figures/scripts in `pics/passive/<run_id>/`. Seed 127 and original physical/solver settings are preserved; this configuration never starts an ODE solver.
+  Its latest 2026-10-17 `figure` revision specifies aligned 1x2 panels without a caption, 1.3:1 plotting rectangles and standalone exports, tight margins, 1 pt spines, solid 1.2 pt charcoal `#2B2D42` linear / 1.6 pt IBXS curves, and legends `Linear Suspension` / `IBXS Suspension`. Increased tick-label padding and endpoint alignment separate the PSD corner labels. This is a figure-only revision; numerical settings and existing CSVs are unchanged.
 - `ibxs_li2021_parameters.json`: IBXS physical parameters, horizontal-damper topology, initial state, track settings, solver and output-grid defaults.
 - `tixs_li2021_parameters.json`: TIXS physical parameters, vertical-damper topology, initial state, track settings, nominal solver and refinement gate.
 - [Railway spectrum explanation](german_railway_spectrum_configuration.md): current shared implementation and preserved historical audit of formulas/realization.

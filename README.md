@@ -51,6 +51,10 @@ $$
 
 RMS is calculated by trapezoidal integration over the output grid. Geometric endpoint margins, static-equilibrium residuals, and refined-step RMS differences check model feasibility and numerical validity rather than serving as additional performance metrics. Detailed equations are available in the [IBXS derivation](docs/IBXS_Lagrange_Derivation.tex), [TIXS derivation](docs/TIXS_Lagrange_Derivation.tex), and [dynamics configuration notes](config/suspension_dynamics_configuration.md).
 
+### Passive linear / IBXS acceleration outputs (2026-10-16)
+
+The CSV-only comparison in [data/passive/linear_ibxs_20261016_0_10s/README.md](data/passive/linear_ibxs_20261016_0_10s/README.md) reuses the existing paired completed 0-10 s runs with seed 127. It exports acceleration histories, time-integrated RMS, and one-sided Welch PSD in both linear density and dB re 1 (m/s^2)^2/Hz. The [figure directory](pics/passive/linear_ibxs_20261016_0_10s/README.md) contains the Matplotlib script and PNG/PDF time-history and logarithmic-frequency (0.5-40 Hz) PSD comparisons. The latest user-requested style has 1.3:1 panels and standalone exports, tight margins, aligned 1x2 combined panels and no bottom caption. The [analysis configuration](config/passive_linear_ibxs_20261016.json) records source paths, coordinate interpretation and estimator settings. The conventional linear input/output pair is consistently interpreted downward-positive using linear sign symmetry and the pitch-coordinate mapping; no nonlinear TIXS response is reused. No physical parameters or simulation code are changed and no ODE integration is rerun.
+
 ## 2. Prerequisites & Installation
 
 The following versions come from existing execution records and identify the verified environment. The repository does not specify minimum compatible versions.
