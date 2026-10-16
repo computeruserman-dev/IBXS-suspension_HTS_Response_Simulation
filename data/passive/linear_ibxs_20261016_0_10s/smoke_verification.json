@@ -1,0 +1,120 @@
+{
+  "status": "pass",
+  "gate": "postprocessing_smoke_no_ode",
+  "time_interval_s": [
+    0,
+    1
+  ],
+  "samples": 501,
+  "csv_roundtrip": "pass",
+  "source_compatibility": {
+    "source_hash_checks": [
+      {
+        "path": "IBXS Suspension/simulate_ibxs_li2021.m",
+        "numerical": true,
+        "original_sha256": "dce12157d1bc2ff7af6b6ca9807dcf089b2000b22b8234e3cca38f52f8bd3297",
+        "current_sha256": "dce12157d1bc2ff7af6b6ca9807dcf089b2000b22b8234e3cca38f52f8bd3297"
+      },
+      {
+        "path": "config/ibxs_li2021_parameters.json",
+        "numerical": true,
+        "original_sha256": "4e42957f794d103d40582d4b2b7a6385b91486b25030b0c6d6e4bf6f90093b2c",
+        "current_sha256": "4e42957f794d103d40582d4b2b7a6385b91486b25030b0c6d6e4bf6f90093b2c"
+      },
+      {
+        "path": "common/plot_time_histories.py.in",
+        "numerical": false,
+        "original_sha256": "31d45c000f16c57efb751ad0edd8dd72805cffd80e62e5ede40ea59198ccae39",
+        "current_sha256": "755e4114701463dc177873f00a9f094f91cd47286585936609c89fb5223f6af6"
+      },
+      {
+        "path": "common/export_suspension_run.m",
+        "numerical": true,
+        "original_sha256": "dd39318940e0596bb2095e5fd4b0c1e9119c068d5fe7489be924048f10a66657",
+        "current_sha256": "dd39318940e0596bb2095e5fd4b0c1e9119c068d5fe7489be924048f10a66657"
+      },
+      {
+        "path": "common/load_suspension_config.m",
+        "numerical": true,
+        "original_sha256": "7908b8af6fbe0ce5d67f366669b3b24c79f275902567ac9aa2662b04011d6bed",
+        "current_sha256": "7908b8af6fbe0ce5d67f366669b3b24c79f275902567ac9aa2662b04011d6bed"
+      },
+      {
+        "path": "common/make_li2021_track.m",
+        "numerical": true,
+        "original_sha256": "e33f8e26b59fd35b28018418e4f3e6ac93295c9f3f2a5e36202ba376bc1ba581",
+        "current_sha256": "e33f8e26b59fd35b28018418e4f3e6ac93295c9f3f2a5e36202ba376bc1ba581"
+      },
+      {
+        "path": "common/validate_solution.m",
+        "numerical": true,
+        "original_sha256": "91e1ce3ee8c96302aeffcb170cc994086dfb0ada3be6cb47fd534ea270a347c3",
+        "current_sha256": "91e1ce3ee8c96302aeffcb170cc994086dfb0ada3be6cb47fd534ea270a347c3"
+      },
+      {
+        "path": "TIXS Suspension/simulate_tixs_li2021.m",
+        "numerical": true,
+        "original_sha256": "e55c62de6277d9232089a9e877e8b0cc809e75f26d37aba5b397e78190eed55a",
+        "current_sha256": "e55c62de6277d9232089a9e877e8b0cc809e75f26d37aba5b397e78190eed55a"
+      },
+      {
+        "path": "config/tixs_li2021_parameters.json",
+        "numerical": true,
+        "original_sha256": "db4fa6f052f11cafae75ec7e654bc00dde83fca6bb02946e8d4f8498bd8f21c4",
+        "current_sha256": "db4fa6f052f11cafae75ec7e654bc00dde83fca6bb02946e8d4f8498bd8f21c4"
+      },
+      {
+        "path": "common/plot_time_histories.py.in",
+        "numerical": false,
+        "original_sha256": "31d45c000f16c57efb751ad0edd8dd72805cffd80e62e5ede40ea59198ccae39",
+        "current_sha256": "755e4114701463dc177873f00a9f094f91cd47286585936609c89fb5223f6af6"
+      },
+      {
+        "path": "common/export_suspension_run.m",
+        "numerical": true,
+        "original_sha256": "dd39318940e0596bb2095e5fd4b0c1e9119c068d5fe7489be924048f10a66657",
+        "current_sha256": "dd39318940e0596bb2095e5fd4b0c1e9119c068d5fe7489be924048f10a66657"
+      },
+      {
+        "path": "common/load_suspension_config.m",
+        "numerical": true,
+        "original_sha256": "7908b8af6fbe0ce5d67f366669b3b24c79f275902567ac9aa2662b04011d6bed",
+        "current_sha256": "7908b8af6fbe0ce5d67f366669b3b24c79f275902567ac9aa2662b04011d6bed"
+      },
+      {
+        "path": "common/make_li2021_track.m",
+        "numerical": true,
+        "original_sha256": "e33f8e26b59fd35b28018418e4f3e6ac93295c9f3f2a5e36202ba376bc1ba581",
+        "current_sha256": "e33f8e26b59fd35b28018418e4f3e6ac93295c9f3f2a5e36202ba376bc1ba581"
+      },
+      {
+        "path": "common/validate_solution.m",
+        "numerical": true,
+        "original_sha256": "91e1ce3ee8c96302aeffcb170cc994086dfb0ada3be6cb47fd534ea270a347c3",
+        "current_sha256": "91e1ce3ee8c96302aeffcb170cc994086dfb0ada3be6cb47fd534ea270a347c3"
+      }
+    ],
+    "time_s_max_abs_difference": 0.0,
+    "front_track_m_max_abs_difference": 0.0,
+    "rear_track_m_max_abs_difference": 0.0,
+    "front_track_velocity_m_s_max_abs_difference": 0.0,
+    "rear_track_velocity_m_s_max_abs_difference": 0.0,
+    "linear_pitch_incidence_mapping": "pass"
+  },
+  "sinusoid_peak_frequency_hz": 16.0,
+  "sinusoid_power_expected": 0.5,
+  "sinusoid_validation": {
+    "segment_count": 3,
+    "start_indices_zero_based": [
+      0,
+      128,
+      256
+    ],
+    "unused_tail_samples": 0,
+    "integrated_psd_m2_s4": 0.5000001208357114,
+    "window_weighted_detrended_mean_square_m2_s4": 0.5000001208357114,
+    "parseval_relative_error": 0.0
+  },
+  "script_sha256": "84d99eacc6378777545760eee5d6bdffba3864a74c7455a515f583ae5a8210bb",
+  "config_sha256": "d5b529597d4ab63fd29f2192f8422b60400d91a015abc7a7360825255aeb1f4b"
+}

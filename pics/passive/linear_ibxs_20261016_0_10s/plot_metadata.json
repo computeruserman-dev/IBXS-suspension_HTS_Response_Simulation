@@ -1,0 +1,185 @@
+{
+  "run_id": "linear_ibxs_20261016_0_10s",
+  "generated_utc": "2026-10-16T17:50:04.262949+00:00",
+  "python": "3.12.14",
+  "numpy": "2.2.6",
+  "matplotlib": "3.10.3",
+  "backend": "Agg",
+  "script_sha256": "e7cf109efaccfa3813ca848f7fb87d367ed35db1fd7cbab9f03b07fe4496e69e",
+  "config_sha256": "e72fe18bf283a65311fbc486641af00bc8229c8e8c853b2a5fa01b109f59b5ff",
+  "source_csv_sha256": {
+    "data/passive/linear_ibxs_20261016_0_10s/vertical_acceleration_time_histories.csv": "94b29740f6adff87df437279dca111802b1a8aee73e0251ac1fb5253a31eb886",
+    "data/passive/linear_ibxs_20261016_0_10s/vertical_acceleration_rms.csv": "5e6d754bac368093b65bfb356180a223dd972f0b9ed44d9d73bb30e9112cabc3",
+    "data/passive/linear_ibxs_20261016_0_10s/vertical_acceleration_psd.csv": "3d71ca9828c2433928d66936d7c44bc5a74f25ff33b7c6b500db37bfc164db66"
+  },
+  "figure_size_inches": [
+    10.4,
+    8
+  ],
+  "style_revision_date_local": "2026-10-17",
+  "intentional_figure_regeneration": true,
+  "figure_checks": {
+    "vertical_acceleration_time_comparison": {
+      "size_inches": [
+        10.4,
+        8.0
+      ],
+      "export_size_inches": [
+        9.36,
+        7.2
+      ],
+      "png_pixels": [
+        2808,
+        2160
+      ],
+      "export_width_height_ratio": 1.2999999999999998,
+      "tight_margins": true,
+      "panels": [
+        {
+          "axes_position": [
+            0.15,
+            0.14,
+            0.8125,
+            0.8125
+          ],
+          "width_height_ratio": 1.3,
+          "line_widths_pt": [
+            1.2,
+            1.6
+          ],
+          "line_styles": [
+            "-",
+            "-"
+          ],
+          "linear_color": "#2B2D42",
+          "spine_width_pt": 1.0,
+          "legend_labels": [
+            "Linear Suspension",
+            "IBXS Suspension"
+          ]
+        }
+      ]
+    },
+    "vertical_acceleration_psd_comparison": {
+      "size_inches": [
+        10.4,
+        8.0
+      ],
+      "export_size_inches": [
+        9.576666666666666,
+        7.366666666666666
+      ],
+      "png_pixels": [
+        2873,
+        2210
+      ],
+      "export_width_height_ratio": 1.3,
+      "tight_margins": true,
+      "panels": [
+        {
+          "axes_position": [
+            0.15,
+            0.14,
+            0.8125,
+            0.8125
+          ],
+          "width_height_ratio": 1.3,
+          "line_widths_pt": [
+            1.2,
+            1.6
+          ],
+          "line_styles": [
+            "-",
+            "-"
+          ],
+          "linear_color": "#2B2D42",
+          "spine_width_pt": 1.0,
+          "legend_labels": [
+            "Linear Suspension",
+            "IBXS Suspension"
+          ]
+        }
+      ]
+    },
+    "vertical_acceleration_combined_comparison": {
+      "size_inches": [
+        18.8,
+        8.0
+      ],
+      "export_size_inches": [
+        18.274555555555562,
+        7.013055555555556
+      ],
+      "png_pixels": [
+        5482,
+        2103
+      ],
+      "export_width_height_ratio": 2.6057907870242016,
+      "tight_margins": true,
+      "panels": [
+        {
+          "axes_position": [
+            0.05585106382978736,
+            0.14,
+            0.41489361702127664,
+            0.75
+          ],
+          "width_height_ratio": 1.3000000000000003,
+          "line_widths_pt": [
+            1.2,
+            1.6
+          ],
+          "line_styles": [
+            "-",
+            "-"
+          ],
+          "linear_color": "#2B2D42",
+          "spine_width_pt": 1.0,
+          "legend_labels": [
+            "Linear Suspension",
+            "IBXS Suspension"
+          ]
+        },
+        {
+          "axes_position": [
+            0.5691489361702132,
+            0.14,
+            0.4148936170212766,
+            0.75
+          ],
+          "width_height_ratio": 1.3,
+          "line_widths_pt": [
+            1.2,
+            1.6
+          ],
+          "line_styles": [
+            "-",
+            "-"
+          ],
+          "linear_color": "#2B2D42",
+          "spine_width_pt": 1.0,
+          "legend_labels": [
+            "Linear Suspension",
+            "IBXS Suspension"
+          ]
+        }
+      ]
+    }
+  },
+  "combined_layout": "1x2",
+  "shared_caption": null,
+  "panel_alignment": "pass",
+  "csv_unchanged_by_plotting": "pass",
+  "psd_xscale": "log",
+  "psd_yscale": "linear_dB",
+  "finite_csv_validation": "pass",
+  "ode_rerun": false,
+  "outputs_sha256": {
+    "pics/passive/linear_ibxs_20261016_0_10s/vertical_acceleration_time_comparison.png": "1e12bcbf62551788002bdc6056a5000c82c85cccd2065f92e583fc07a69b2e2c",
+    "pics/passive/linear_ibxs_20261016_0_10s/vertical_acceleration_time_comparison.pdf": "0fb0d9e687dff077205a645da8aa11143a44ccfce0853f7ac26030281afc1ced",
+    "pics/passive/linear_ibxs_20261016_0_10s/vertical_acceleration_psd_comparison.png": "6d1702b9d41714a55ca430375f1254bab94c5684cad592f10eb341c75a4d0104",
+    "pics/passive/linear_ibxs_20261016_0_10s/vertical_acceleration_psd_comparison.pdf": "8416ac0613dc5de61a0a15e8e7734f3dd69aa8f8a33859915c79f8d5133515ae",
+    "pics/passive/linear_ibxs_20261016_0_10s/vertical_acceleration_combined_comparison.png": "907bfaca130057db67dd5d932e95419e75082a937402db9841ae870a72104d49",
+    "pics/passive/linear_ibxs_20261016_0_10s/vertical_acceleration_combined_comparison.pdf": "3c3d08165b71a70141bc99ca2f529e66f121ab3ac75b631f4a87487ebeaab9ca"
+  }
+}
